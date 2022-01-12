@@ -202,7 +202,7 @@ inline C operator - (const C &a, const float &b) {
 };
 
 
-inline float C::norm() { return sqrt(abs(((*this)*Conjugate()).mvec[0])); }
+inline float C::norm() { return sqrt(std::abs(((*this)*Conjugate()).mvec[0])); }
 inline float C::inorm() { return (!(*this)).norm(); }
 inline C C::normalized() { return (*this) * (1/norm()); }
 

@@ -1,5 +1,6 @@
 codegen/out*
 codegen/rust/*_rust
 codegen/cpp/*_cpp
+codegen/java/*_java
 codegen/rust/*_rust.pdb
 package.json

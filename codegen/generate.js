@@ -1,5 +1,5 @@
 //******** Projective Geometric Algebra *********//
-// 
+//
 // a nodeJS template generator for a reference
 // PGA implementation in a variety of languages.
 //
@@ -12,7 +12,8 @@ var lang = [
       { name: 'csharp', ext: "cs",  template: require('./cs.template.js') },
       { name: 'cpp', ext: "cpp", template: require('./cpp.template.js') },
       { name: 'python', ext: "py",  template: require('./py.template.js') },
-      { name: 'rust', ext: "rs",  template: require('./rs.template.js') }
+      { name: 'rust', ext: "rs",  template: require('./rs.template.js') },
+      { name: 'java', ext: "java",  template: require('./java.template.js') }
     ];
 
 //***********************************************//
@@ -74,7 +75,7 @@ pga.prototype.Sub= new Function("b,res",
 `  res = res||new pga();
   ${[...Array(2**(p+q+r))].map((x,i)=>`  res[${i}] = this[${i}]-b[${i}];`).join("\n")}
   return res;`)
-// prototype scalar mul/add left and right side  
+// prototype scalar mul/add left and right side
 pga.prototype.muls= new Function("b,res",
 `  res = res||new pga();
   ${[...Array(2**(p+q+r))].map((x,i)=>`  res[${i}] = this[${i}]*b;`).join("\n")}
@@ -144,8 +145,8 @@ lang.filter(should_generate_lang).forEach(lang => {
                                            .replace(/\n/g,"\n  ")
                                            .replace(/this/g,"a")
                                            .replace(/\-/g,(a)=>b.name=="Dual"?"":a),
-                      b.classname_a, b.classname_b, b.desc 
-                    ));    
+                      b.classname_a, b.classname_b, b.desc
+                    ));
 
   // Generate the code for the unary operators.
   var unops_code = unops.map(u=>lang.template.unary(
@@ -162,14 +163,14 @@ lang.filter(should_generate_lang).forEach(lang => {
   if (!fs.existsSync(lang.name)) {
     fs.mkdirSync(lang.name);
   }
-  
+
   var file_name = path.join(lang.name, `${name.toLowerCase()}.${lang.ext}`);
   fs.writeFileSync(file_name,[lang.template.preamble(basis,name),
                ...unops_code,
                ...binops_code,
                lang.template.postamble(basis,name,lang.template[name]&&lang.template[name](basis,name)||lang.template.GENERIC&&lang.template.GENERIC(basis,name)||{preamble:'',amble:''})
               ].join("\n\n"));
-});              
+});
   console.log('['+name.toUpperCase()+'] Generated '+lang.filter(should_generate_lang).map(x=>x.template.desc).join(', '));
 
 
