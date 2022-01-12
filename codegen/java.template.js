@@ -105,7 +105,7 @@ body=`
 		double[] ${name_ret} = new double[${classname}._basisLength];
 		${aDefiniton}
 
-${(symbol?code:code.replace(/a\[/g,name_ret+"[")).replace(/^\s*/gm,'		')}
+${(symbol?code:code.replace(/a\[/g,"this._mVec[")).replace(/^\s*/gm,'		')}
 
 		${classname} ${name_ret}_ret = new ${classname}();
 		${name_ret}_ret._mVec = ${name_ret};

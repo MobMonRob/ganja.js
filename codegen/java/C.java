@@ -88,8 +88,8 @@ public class C 	{
 		double[] res = new double[C._basisLength];
 		
 
-		res[0]=res[0];
-		res[1]=-res[1];
+		res[0]=this._mVec[0];
+		res[1]=-this._mVec[1];
 
 		C res_ret = new C();
 		res_ret._mVec = res;
@@ -107,8 +107,8 @@ public class C 	{
 		double[] res = new double[C._basisLength];
 		
 
-		res[0]=res[0];
-		res[1]=-res[1];
+		res[0]=this._mVec[0];
+		res[1]=-this._mVec[1];
 
 		C res_ret = new C();
 		res_ret._mVec = res;

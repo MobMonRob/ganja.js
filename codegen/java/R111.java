@@ -100,14 +100,14 @@ public class R111 	{
 		double[] res = new double[R111._basisLength];
 		
 
-		res[0]=res[0];
-		res[1]=-res[1];
-		res[2]=-res[2];
-		res[3]=-res[3];
-		res[4]=-res[4];
-		res[5]=-res[5];
-		res[6]=-res[6];
-		res[7]=res[7];
+		res[0]=this._mVec[0];
+		res[1]=-this._mVec[1];
+		res[2]=-this._mVec[2];
+		res[3]=-this._mVec[3];
+		res[4]=-this._mVec[4];
+		res[5]=-this._mVec[5];
+		res[6]=-this._mVec[6];
+		res[7]=this._mVec[7];
 
 		R111 res_ret = new R111();
 		res_ret._mVec = res;
@@ -125,14 +125,14 @@ public class R111 	{
 		double[] res = new double[R111._basisLength];
 		
 
-		res[0]=res[0];
-		res[1]=-res[1];
-		res[2]=-res[2];
-		res[3]=-res[3];
-		res[4]=res[4];
-		res[5]=res[5];
-		res[6]=res[6];
-		res[7]=-res[7];
+		res[0]=this._mVec[0];
+		res[1]=-this._mVec[1];
+		res[2]=-this._mVec[2];
+		res[3]=-this._mVec[3];
+		res[4]=this._mVec[4];
+		res[5]=this._mVec[5];
+		res[6]=this._mVec[6];
+		res[7]=-this._mVec[7];
 
 		R111 res_ret = new R111();
 		res_ret._mVec = res;
