@@ -2,88 +2,90 @@
 var preamble = (basis,classname)=>
 `// 3D Projective Geometric Algebra
 // Written by a generator written by enki.
-using System;
-using System.Text;
-using static ${classname.slice(0,3)}.${classname}; // static variable acces
+package de.dhbw.rahmlab.ganjatest.impl;
 
-namespace ${classname.slice(0,3)}
-{
-	public class ${classname}
-	{
-		// just for debug and print output, the basis names
-		public static string[] _basis = new[] { ${basis.map(x=>'"'+x+'"').join(',')} };
+public class ${classname} 	{
+	// just for debug and print output, the basis names
+	public static String[] _basis = new String[] { ${basis.map(x=>'"'+x+'"').join(',')} };
 
-		private float[] _mVec = new float[${basis.length}];
+	private double[] _mVec = new double[${basis.length}];
 
-		/// <summary>
-		/// Ctor
-		/// </summary>
-		/// <param name="f"></param>
-		/// <param name="idx"></param>
-		public ${classname}(float f = 0f, int idx = 0)
-		{
-			_mVec[idx] = f;
-		}
+	/// <summary>
+	/// Ctor
+	/// </summary>
+	/// <param name="f"></param>
+	/// <param name="idx"></param>
+	public ${classname}(double f, int idx) {
+		_mVec[idx] = f;
+	}
 
-		#region Array Access
-		public float this[int idx]
-		{
-			get { return _mVec[idx]; }
-			set { _mVec[idx] = value; }
-		}
-		#endregion
+	/// <summary>
+	/// Ctor
+	/// </summary>
+	/// <param name="f"></param>
+	/// <param name="idx"></param>
+	public ${classname}() {
+		_mVec[0] = 0d;
+	}
 
-		#region Overloaded Operators`;
+	public double get(int idx) {
+		return _mVec[idx];
+	}
 
+	public void set(int idx, double value) {
+		_mVec[idx] = value;
+	}
+`;
 
 // cs Template for our binary operators
 
 var binary = (classname, symbol, name, name_a, name_b, name_ret, code, classname_a=classname, classname_b=classname,desc='')=>
-`		/// <summary>
-		/// ${classname}.${name} : ${name_ret} = ${symbol?name_a+" "+symbol+" "+name_b:name_a+"."+name+"("+name_b+")"}
-		/// ${desc}
-		/// </summary>
-		public static ${classname} ${symbol?"operator "+symbol:name} (${classname_a} ${name_a}, ${classname_b} ${name_b})
-		{
-			${classname} ${name_ret} = new ${classname}();
+`	/// <summary>
+	// binary operator
+	/// ${classname}.${name} : ${name_ret} = ${symbol?name_a+" "+symbol+" "+name_b:name_a+"."+name+"("+name_b+")"}
+	/// ${desc}
+	/// </summary>
+	public static ${classname} ${symbol?"operator "+symbol:name} (${classname_a} ${name_a}, ${classname_b} ${name_b})
+	{
+		${classname} ${name_ret} = new ${classname}();
 ${code.replace(/^\s*/gm,'			')}
-			return ${name_ret};
-		}`
+		return ${name_ret};
+	}`
 
 // cs Template for our unary operators
 
 var unary = (classname, symbol, name, name_a, name_ret, code, classname_a=classname,desc='')=>
-`		/// <summary>
-		/// ${classname}.${name} : ${name_ret} = ${symbol?symbol+name_a:name_a+"."+name+"()"}
-		/// ${desc}
-		/// </summary>
-		public ${symbol?"static":""} ${classname} ${symbol?"operator "+symbol:name} (${symbol?`${classname_a} ${name_a}`:``})
-		{
-			${classname} ${name_ret} = new ${classname}();
+`	/// <summary>
+	/// ${classname}.${name} : ${name_ret} = ${symbol?symbol+name_a:name_a+"."+name+"()"}
+	/// ${desc}
+	/// </summary>
+	public ${symbol?"static":""} ${classname} ${symbol?"operator "+symbol:name} (${symbol?`${classname_a} ${name_a}`:``})
+	{
+		${classname} ${name_ret} = new ${classname}();
 ${(symbol?code:code.replace(/a\[/g,'this[')).replace(/^\s*/gm,'			')}
-			return ${name_ret};
-		}`
+		return ${name_ret};
+	}`
 
 // cs template for CGA example
 var CGA = (basis,classname)=>({
 preamble:`
-		// CGA is point based. Vectors are points.
-		public static ${classname} e1 = new ${classname}(1f, 1);
-		public static ${classname} e2 = new ${classname}(1f, 2);
-		public static ${classname} e3 = new ${classname}(1f, 3);
-		public static ${classname} e4 = new ${classname}(1f, 4);
-		public static ${classname} e5 = new ${classname}(1f, 5);
+	// CGA is point based. Vectors are points.
+	public static ${classname} e1 = new ${classname}(1f, 1);
+	public static ${classname} e2 = new ${classname}(1f, 2);
+	public static ${classname} e3 = new ${classname}(1f, 3);
+	public static ${classname} e4 = new ${classname}(1f, 4);
+	public static ${classname} e5 = new ${classname}(1f, 5);
 
-		// We seldomly work in the natural basis, but instead in a null basis
-		// for this we create two null vectors 'origin' and 'infinity'
-		public static ${classname} eo = e4+e5;
-		public static ${classname} ei = (e5-e4)*0.5f;
+	// We seldomly work in the natural basis, but instead in a null basis
+	// for this we create two null vectors 'origin' and 'infinity'
+	public static ${classname} eo = e4+e5;
+	public static ${classname} ei = (e5-e4)*0.5f;
 
-		// create a point from x,y,z coordinates
-		public static ${classname} up (float x, float y, float z) {
-		  float d = x*x + y*y + z*z;
-		  return x*e1 + y*e2 + z*e3 + 0.5f*d*ei + eo;
-		}
+	// create a point from x,y,z coordinates
+	public static ${classname} up (double x, double y, double z) {
+		double d = x*x + y*y + z*z;
+		return x*e1 + y*e2 + z*e3 + 0.5f*d*ei + eo;
+	}
 `,
 amble:`
                         // For points, use the up function.
@@ -105,13 +107,13 @@ amble:`
 // cs template for algebras where I don't have specific examples yet ..
 var GENERIC = (basis, classname)=>({
 preamble:`
-		// The basis blades
+	// The basis blades
 ${basis.slice(1).map((x,i)=>`		public static ${classname} ${x} = new ${classname}(1f, ${i+1});`).join('\n')}
 `,
 amble:`
-			Console.WriteLine("${basis[1]}*${basis[1]}         : "+${basis[1]}*${basis[1]});
-			Console.WriteLine("pss           : "+${basis[basis.length-1]});
-			Console.WriteLine("pss*pss       : "+${basis[basis.length-1]}*${basis[basis.length-1]});
+		Console.WriteLine("${basis[1]}*${basis[1]}         : "+${basis[1]}*${basis[1]});
+		Console.WriteLine("pss           : "+${basis[basis.length-1]});
+		Console.WriteLine("pss*pss       : "+${basis[basis.length-1]}*${basis[basis.length-1]});
 `
 })
 
@@ -142,41 +144,41 @@ preamble:`
 		/// ${classname}.plane(a,b,c,d)
 		/// A plane is defined using its homogenous equation ax + by + cz + d = 0
 		/// </summary>
-		public static ${classname} plane(float a, float b, float c, float d) { return a*e1 + b*e2 + c*e3 + d*e0; }
+		public static ${classname} plane(double a, double b, double c, double d) { return a*e1 + b*e2 + c*e3 + d*e0; }
 
 		/// <summary>
 		/// ${classname}.point(x,y,z)
 		/// A point is just a homogeneous point, euclidean coordinates plus the origin
 		/// </summary>
-		public static ${classname} point(float x, float y, float z) { return e123 + x*e032 + y*e013 + z*e021; }
+		public static ${classname} point(double x, double y, double z) { return e123 + x*e032 + y*e013 + z*e021; }
 
 		/// <summary>
 		/// Rotors (euclidean lines) and translators (ideal lines)
 		/// </summary>
-		public static ${classname} rotor(float angle, ${classname} line) { return ((float) Math.Cos(angle/2.0f)) +  ((float) Math.Sin(angle/2.0f)) * line.normalized(); }
-		public static ${classname} translator(float dist, ${classname} line) { return 1.0f + (dist/2.0f) * line; }
+		public static ${classname} rotor(double angle, ${classname} line) { return ((double) Math.Cos(angle/2.0f)) +  ((double) Math.Sin(angle/2.0f)) * line.normalized(); }
+		public static ${classname} translator(double dist, ${classname} line) { return 1.0f + (dist/2.0f) * line; }
 
 		// for our toy problem (generate points on the surface of a torus)
 		// we start with a function that generates motors.
 		// circle(t) with t going from 0 to 1.
-		public static ${classname} circle(float t, float radius, ${classname} line) {
-		  return rotor(t*2.0f*(float) Math.PI,line) * translator(radius,e1*e0);
+		public static ${classname} circle(double t, double radius, ${classname} line) {
+		  return rotor(t*2.0f*(double) Math.PI,line) * translator(radius,e1*e0);
 		}
 
 		// a torus is now the product of two circles.
-		public static ${classname} torus(float s, float t, float r1, ${classname} l1, float r2, ${classname} l2) {
+		public static ${classname} torus(double s, double t, double r1, ${classname} l1, double r2, ${classname} l2) {
 		  return circle(s,r2,l2)*circle(t,r1,l1);
 		}
 
 		// and to sample its points we simply sandwich the origin ..
-		public static ${classname} point_on_torus(float s, float t) {
+		public static ${classname} point_on_torus(double s, double t) {
 		  var to = torus(s,t,0.25f,e12,0.6f,e31);
 		  return to * e123 * ~to;
 		}
 `,
 amble:`
 			// Elements of the even subalgebra (scalar + bivector + pss) of unit length are motors
-			var rot = rotor((float) Math.PI/2.0f,e1*e2);
+			var rot = rotor((double) Math.PI/2.0f,e1*e2);
 
 			// The outer product ^ is the MEET. Here we intersect the yz (x=0) and xz (y=0) planes.
 			var ax_z = e1 ^ e2;
@@ -216,51 +218,50 @@ amble:`
 
 // cs Template for the postamble
 var postamble = (basis, classname, example)=>
-`		#endregion
+`	#endregion
 
                 /// <summary>
                 /// ${classname}.norm()
                 /// Calculate the Euclidean norm. (strict positive).
                 /// </summary>
-		public float norm() { return (float) Math.Sqrt(Math.Abs((this*this.Conjugate())[0]));}
+	public double norm() { return (double) Math.Sqrt(Math.Abs((this*this.Conjugate())[0]));}
 
-		/// <summary>
-		/// ${classname}.inorm()
-		/// Calculate the Ideal norm. (signed)
-		/// </summary>
-		public float inorm() { return this[1]!=0.0f?this[1]:this[15]!=0.0f?this[15]:(!this).norm();}
+	/// <summary>
+	/// ${classname}.inorm()
+	/// Calculate the Ideal norm. (signed)
+	/// </summary>
+	public double inorm() { return this[1]!=0.0f?this[1]:this[15]!=0.0f?this[15]:(!this).norm();}
 
-		/// <summary>
-		/// ${classname}.normalized()
-		/// Returns a normalized (Euclidean) element.
-		/// </summary>
-		public ${classname} normalized() { return this*(1/norm()); }
+	/// <summary>
+	/// ${classname}.normalized()
+	/// Returns a normalized (Euclidean) element.
+	/// </summary>
+	public ${classname} normalized() { return this*(1/norm()); }
 
-		${example.preamble}
+	${example.preamble}
 
-		/// string cast
-		public override string ToString()
-		{
-			var sb = new StringBuilder();
-			var n=0;
-			for (int i = 0; i < ${basis.length}; ++i)
-				if (_mVec[i] != 0.0f) {
-					sb.Append($"{_mVec[i]}{(i == 0 ? string.Empty : _basis[i])} + ");
-					n++;
-			        }
-			if (n==0) sb.Append("0");
-			return sb.ToString().TrimEnd(' ', '+');
-		}
-	}
-
-	class Program
+	/// string cast
+	public override string ToString()
 	{
+		var sb = new StringBuilder();
+		var n=0;
+		for (int i = 0; i < ${basis.length}; ++i)
+			if (_mVec[i] != 0.0f) {
+				sb.Append($"{_mVec[i]}{(i == 0 ? string.Empty : _basis[i])} + ");
+				n++;
+		        }
+		if (n==0) sb.Append("0");
+		return sb.ToString().TrimEnd(' ', '+');
+	}
+}
+
+class Program
+{
 
 
-		static void Main(string[] args)
-		{
-		${example.amble}
-		}
+	static void Main(string[] args)
+	{
+	${example.amble}
 	}
 }
 

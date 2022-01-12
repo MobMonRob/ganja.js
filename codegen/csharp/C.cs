@@ -232,30 +232,30 @@ namespace C
                 /// Calculate the Euclidean norm. (strict positive).
                 /// </summary>
 		public float norm() { return (float) Math.Sqrt(Math.Abs((this*this.Conjugate())[0]));}
-
+		
 		/// <summary>
 		/// C.inorm()
 		/// Calculate the Ideal norm. (signed)
 		/// </summary>
 		public float inorm() { return this[1]!=0.0f?this[1]:this[15]!=0.0f?this[15]:(!this).norm();}
-
+		
 		/// <summary>
 		/// C.normalized()
 		/// Returns a normalized (Euclidean) element.
 		/// </summary>
 		public C normalized() { return this*(1/norm()); }
-
+		
 		
 		// The basis blades
 		public static C e1 = new C(1f, 1);
 
-
+		
 		/// string cast
 		public override string ToString()
 		{
 			var sb = new StringBuilder();
 			var n=0;
-			for (int i = 0; i < 2; ++i)
+			for (int i = 0; i < 2; ++i) 
 				if (_mVec[i] != 0.0f) {
 					sb.Append($"{_mVec[i]}{(i == 0 ? string.Empty : _basis[i])} + ");
 					n++;
@@ -267,7 +267,7 @@ namespace C
 
 	class Program
 	{
-
+	        
 
 		static void Main(string[] args)
 		{

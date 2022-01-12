@@ -164,7 +164,7 @@ lang.filter(should_generate_lang).forEach(lang => {
     fs.mkdirSync(lang.name);
   }
 
-  var file_name = path.join(lang.name, `${name.toLowerCase()}.${lang.ext}`);
+  var file_name = path.join(lang.name, `${name.toUpperCase()}.${lang.ext}`);
   fs.writeFileSync(file_name,[lang.template.preamble(basis,name),
                ...unops_code,
                ...binops_code,
@@ -172,5 +172,4 @@ lang.filter(should_generate_lang).forEach(lang => {
               ].join("\n\n"));
 });
   console.log('['+name.toUpperCase()+'] Generated '+lang.filter(should_generate_lang).map(x=>x.template.desc).join(', '));
-
 

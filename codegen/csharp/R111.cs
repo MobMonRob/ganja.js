@@ -328,19 +328,19 @@ namespace R11
                 /// Calculate the Euclidean norm. (strict positive).
                 /// </summary>
 		public float norm() { return (float) Math.Sqrt(Math.Abs((this*this.Conjugate())[0]));}
-
+		
 		/// <summary>
 		/// R111.inorm()
 		/// Calculate the Ideal norm. (signed)
 		/// </summary>
 		public float inorm() { return this[1]!=0.0f?this[1]:this[15]!=0.0f?this[15]:(!this).norm();}
-
+		
 		/// <summary>
 		/// R111.normalized()
 		/// Returns a normalized (Euclidean) element.
 		/// </summary>
 		public R111 normalized() { return this*(1/norm()); }
-
+		
 		
 		// The basis blades
 		public static R111 e0 = new R111(1f, 1);
@@ -351,13 +351,13 @@ namespace R11
 		public static R111 e12 = new R111(1f, 6);
 		public static R111 e012 = new R111(1f, 7);
 
-
+		
 		/// string cast
 		public override string ToString()
 		{
 			var sb = new StringBuilder();
 			var n=0;
-			for (int i = 0; i < 8; ++i)
+			for (int i = 0; i < 8; ++i) 
 				if (_mVec[i] != 0.0f) {
 					sb.Append($"{_mVec[i]}{(i == 0 ? string.Empty : _basis[i])} + ");
 					n++;
@@ -369,7 +369,7 @@ namespace R11
 
 	class Program
 	{
-
+	        
 
 		static void Main(string[] args)
 		{
