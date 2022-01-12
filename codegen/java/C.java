@@ -11,7 +11,8 @@ public class C {
 
 	private double[] _mVec = new double[C._basisLength];
 
-	public static final C Empty = new C();
+	// You must ensure that it's inner _mVec will never be changed.
+	private static final C Empty = new C();
 
 	/// <summary>
 	/// Ctor

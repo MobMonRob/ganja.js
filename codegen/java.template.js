@@ -13,7 +13,8 @@ public class ${classname} {
 
 	private double[] _mVec = new double[${classname}._basisLength];
 
-	public static final ${classname} Empty = new ${classname}();
+	// You must ensure that it's inner _mVec will never be changed.
+	private static final ${classname} Empty = new ${classname}();
 
 	/// <summary>
 	/// Ctor

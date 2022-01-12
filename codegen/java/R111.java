@@ -11,7 +11,8 @@ public class R111 {
 
 	private double[] _mVec = new double[R111._basisLength];
 
-	public static final R111 Empty = new R111();
+	// You must ensure that it's inner _mVec will never be changed.
+	private static final R111 Empty = new R111();
 
 	/// <summary>
 	/// Ctor
