@@ -4,12 +4,14 @@ package de.dhbw.rahmlab.ganjatest.impl;
 
 import java.util.Arrays;
 
-public class R111 	{
+public class R111 {
 	// just for debug and print output, the basis names
 	public static final String[] _basis = new String[] { "1","e0","e1","e2","e01","e02","e12","e012" };
-	private static final int _basisLength = 8;
+	public static final int _basisLength = 8;
 
 	private double[] _mVec = new double[R111._basisLength];
+
+	public static final R111 Empty = new R111();
 
 	/// <summary>
 	/// Ctor
@@ -24,10 +26,15 @@ public class R111 	{
 	/// <summary>
 	/// Ctor
 	/// </summary>
-	/// <param name="f"></param>
-	/// <param name="idx"></param>
 	public R111() {
 		Arrays.fill(this._mVec, 0d);
+	}
+
+	/// <summary>
+	/// Ctor
+	/// </summary>
+	public R111(final R111 other) {
+		this._mVec = other._mVec;
 	}
 
 	public double get(int idx) {
@@ -59,7 +66,7 @@ public class R111 	{
 		res[6]=-a[6];
 		res[7]=-a[7];
 
-		R111 res_ret = new R111();
+		R111 res_ret = new R111(R111.Empty);
 		res_ret._mVec = res;
 		return res_ret;
 	}
@@ -84,7 +91,7 @@ public class R111 	{
 		res[6]=a[1];
 		res[7]=a[0];
 
-		R111 res_ret = new R111();
+		R111 res_ret = new R111(R111.Empty);
 		res_ret._mVec = res;
 		return res_ret;
 	}
@@ -109,7 +116,7 @@ public class R111 	{
 		res[6]=-this._mVec[6];
 		res[7]=this._mVec[7];
 
-		R111 res_ret = new R111();
+		R111 res_ret = new R111(R111.Empty);
 		res_ret._mVec = res;
 		return res_ret;
 	}
@@ -134,7 +141,7 @@ public class R111 	{
 		res[6]=this._mVec[6];
 		res[7]=-this._mVec[7];
 
-		R111 res_ret = new R111();
+		R111 res_ret = new R111(R111.Empty);
 		res_ret._mVec = res;
 		return res_ret;
 	}
@@ -160,7 +167,7 @@ public class R111 	{
 		res[6]=b[6]*a[0]+b[3]*a[2]-b[2]*a[3]+b[0]*a[6];
 		res[7]=b[7]*a[0]+b[6]*a[1]-b[5]*a[2]+b[4]*a[3]+b[3]*a[4]-b[2]*a[5]+b[1]*a[6]+b[0]*a[7];
 
-		R111 res_ret = new R111();
+		R111 res_ret = new R111(R111.Empty);
 		res_ret._mVec = res;
 		return res_ret;
 	}
@@ -186,7 +193,7 @@ public class R111 	{
 		res[6]=b[6]*a[0]+b[3]*a[2]-b[2]*a[3]+b[0]*a[6];
 		res[7]=b[7]*a[0]+b[6]*a[1]-b[5]*a[2]+b[4]*a[3]+b[3]*a[4]-b[2]*a[5]+b[1]*a[6]+b[0]*a[7];
 
-		R111 res_ret = new R111();
+		R111 res_ret = new R111(R111.Empty);
 		res_ret._mVec = res;
 		return res_ret;
 	}
@@ -212,7 +219,7 @@ public class R111 	{
 		res[1]=1*(a[1]*b[7]+a[4]*b[5]*-1-a[5]*-1*b[4]+a[7]*b[1]);
 		res[0]=1*(a[0]*b[7]+a[1]*b[6]-a[2]*-1*b[5]*-1+a[3]*b[4]+a[4]*b[3]-a[5]*-1*b[2]*-1+a[6]*b[1]+a[7]*b[0]);
 
-		R111 res_ret = new R111();
+		R111 res_ret = new R111(R111.Empty);
 		res_ret._mVec = res;
 		return res_ret;
 	}
@@ -238,7 +245,7 @@ public class R111 	{
 		res[6]=b[6]*a[0]+b[0]*a[6];
 		res[7]=b[7]*a[0]+b[0]*a[7];
 
-		R111 res_ret = new R111();
+		R111 res_ret = new R111(R111.Empty);
 		res_ret._mVec = res;
 		return res_ret;
 	}
@@ -264,7 +271,7 @@ public class R111 	{
 		res[6] = a[6]+b[6];
 		res[7] = a[7]+b[7];
 
-		R111 res_ret = new R111();
+		R111 res_ret = new R111(R111.Empty);
 		res_ret._mVec = res;
 		return res_ret;
 	}
@@ -290,7 +297,7 @@ public class R111 	{
 		res[6] = a[6]-b[6];
 		res[7] = a[7]-b[7];
 
-		R111 res_ret = new R111();
+		R111 res_ret = new R111(R111.Empty);
 		res_ret._mVec = res;
 		return res_ret;
 	}
@@ -316,7 +323,7 @@ public class R111 	{
 		res[6] = a*b[6];
 		res[7] = a*b[7];
 
-		R111 res_ret = new R111();
+		R111 res_ret = new R111(R111.Empty);
 		res_ret._mVec = res;
 		return res_ret;
 	}
@@ -342,7 +349,7 @@ public class R111 	{
 		res[6] = a[6]*b;
 		res[7] = a[7]*b;
 
-		R111 res_ret = new R111();
+		R111 res_ret = new R111(R111.Empty);
 		res_ret._mVec = res;
 		return res_ret;
 	}
@@ -368,7 +375,7 @@ public class R111 	{
 		res[6] = b[6];
 		res[7] = b[7];
 
-		R111 res_ret = new R111();
+		R111 res_ret = new R111(R111.Empty);
 		res_ret._mVec = res;
 		return res_ret;
 	}
@@ -394,7 +401,7 @@ public class R111 	{
 		res[6] = a[6];
 		res[7] = a[7];
 
-		R111 res_ret = new R111();
+		R111 res_ret = new R111(R111.Empty);
 		res_ret._mVec = res;
 		return res_ret;
 	}
@@ -420,7 +427,7 @@ public class R111 	{
 		res[6] = -b[6];
 		res[7] = -b[7];
 
-		R111 res_ret = new R111();
+		R111 res_ret = new R111(R111.Empty);
 		res_ret._mVec = res;
 		return res_ret;
 	}
@@ -446,7 +453,7 @@ public class R111 	{
 		res[6] = a[6];
 		res[7] = a[7];
 
-		R111 res_ret = new R111();
+		R111 res_ret = new R111(R111.Empty);
 		res_ret._mVec = res;
 		return res_ret;
 	}

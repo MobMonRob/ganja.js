@@ -4,12 +4,14 @@ package de.dhbw.rahmlab.ganjatest.impl;
 
 import java.util.Arrays;
 
-public class C 	{
+public class C {
 	// just for debug and print output, the basis names
 	public static final String[] _basis = new String[] { "1","e1" };
-	private static final int _basisLength = 2;
+	public static final int _basisLength = 2;
 
 	private double[] _mVec = new double[C._basisLength];
+
+	public static final C Empty = new C();
 
 	/// <summary>
 	/// Ctor
@@ -24,10 +26,15 @@ public class C 	{
 	/// <summary>
 	/// Ctor
 	/// </summary>
-	/// <param name="f"></param>
-	/// <param name="idx"></param>
 	public C() {
 		Arrays.fill(this._mVec, 0d);
+	}
+
+	/// <summary>
+	/// Ctor
+	/// </summary>
+	public C(final C other) {
+		this._mVec = other._mVec;
 	}
 
 	public double get(int idx) {
@@ -53,7 +60,7 @@ public class C 	{
 		res[0]=a[0];
 		res[1]=a[1];
 
-		C res_ret = new C();
+		C res_ret = new C(C.Empty);
 		res_ret._mVec = res;
 		return res_ret;
 	}
@@ -72,7 +79,7 @@ public class C 	{
 		res[0]=-a[1];
 		res[1]=a[0];
 
-		C res_ret = new C();
+		C res_ret = new C(C.Empty);
 		res_ret._mVec = res;
 		return res_ret;
 	}
@@ -91,7 +98,7 @@ public class C 	{
 		res[0]=this._mVec[0];
 		res[1]=-this._mVec[1];
 
-		C res_ret = new C();
+		C res_ret = new C(C.Empty);
 		res_ret._mVec = res;
 		return res_ret;
 	}
@@ -110,7 +117,7 @@ public class C 	{
 		res[0]=this._mVec[0];
 		res[1]=-this._mVec[1];
 
-		C res_ret = new C();
+		C res_ret = new C(C.Empty);
 		res_ret._mVec = res;
 		return res_ret;
 	}
@@ -130,7 +137,7 @@ public class C 	{
 		res[0]=b[0]*a[0]-b[1]*a[1];
 		res[1]=b[1]*a[0]+b[0]*a[1];
 
-		C res_ret = new C();
+		C res_ret = new C(C.Empty);
 		res_ret._mVec = res;
 		return res_ret;
 	}
@@ -150,7 +157,7 @@ public class C 	{
 		res[0]=b[0]*a[0];
 		res[1]=b[1]*a[0]+b[0]*a[1];
 
-		C res_ret = new C();
+		C res_ret = new C(C.Empty);
 		res_ret._mVec = res;
 		return res_ret;
 	}
@@ -170,7 +177,7 @@ public class C 	{
 		res[1]=1*(a[1]*b[1]);
 		res[0]=1*(a[0]*b[1]+a[1]*b[0]);
 
-		C res_ret = new C();
+		C res_ret = new C(C.Empty);
 		res_ret._mVec = res;
 		return res_ret;
 	}
@@ -190,7 +197,7 @@ public class C 	{
 		res[0]=b[0]*a[0]-b[1]*a[1];
 		res[1]=b[1]*a[0]+b[0]*a[1];
 
-		C res_ret = new C();
+		C res_ret = new C(C.Empty);
 		res_ret._mVec = res;
 		return res_ret;
 	}
@@ -210,7 +217,7 @@ public class C 	{
 		res[0] = a[0]+b[0];
 		res[1] = a[1]+b[1];
 
-		C res_ret = new C();
+		C res_ret = new C(C.Empty);
 		res_ret._mVec = res;
 		return res_ret;
 	}
@@ -230,7 +237,7 @@ public class C 	{
 		res[0] = a[0]-b[0];
 		res[1] = a[1]-b[1];
 
-		C res_ret = new C();
+		C res_ret = new C(C.Empty);
 		res_ret._mVec = res;
 		return res_ret;
 	}
@@ -250,7 +257,7 @@ public class C 	{
 		res[0] = a*b[0];
 		res[1] = a*b[1];
 
-		C res_ret = new C();
+		C res_ret = new C(C.Empty);
 		res_ret._mVec = res;
 		return res_ret;
 	}
@@ -270,7 +277,7 @@ public class C 	{
 		res[0] = a[0]*b;
 		res[1] = a[1]*b;
 
-		C res_ret = new C();
+		C res_ret = new C(C.Empty);
 		res_ret._mVec = res;
 		return res_ret;
 	}
@@ -290,7 +297,7 @@ public class C 	{
 		res[0] = a+b[0];
 		res[1] = b[1];
 
-		C res_ret = new C();
+		C res_ret = new C(C.Empty);
 		res_ret._mVec = res;
 		return res_ret;
 	}
@@ -310,7 +317,7 @@ public class C 	{
 		res[0] = a[0]+b;
 		res[1] = a[1];
 
-		C res_ret = new C();
+		C res_ret = new C(C.Empty);
 		res_ret._mVec = res;
 		return res_ret;
 	}
@@ -330,7 +337,7 @@ public class C 	{
 		res[0] = a-b[0];
 		res[1] = -b[1];
 
-		C res_ret = new C();
+		C res_ret = new C(C.Empty);
 		res_ret._mVec = res;
 		return res_ret;
 	}
@@ -350,7 +357,7 @@ public class C 	{
 		res[0] = a[0]-b;
 		res[1] = a[1];
 
-		C res_ret = new C();
+		C res_ret = new C(C.Empty);
 		res_ret._mVec = res;
 		return res_ret;
 	}

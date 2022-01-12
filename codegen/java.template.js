@@ -6,12 +6,14 @@ package de.dhbw.rahmlab.ganjatest.impl;
 
 import java.util.Arrays;
 
-public class ${classname} 	{
+public class ${classname} {
 	// just for debug and print output, the basis names
 	public static final String[] _basis = new String[] { ${basis.map(x=>'"'+x+'"').join(',')} };
-	private static final int _basisLength = ${basis.length};
+	public static final int _basisLength = ${basis.length};
 
 	private double[] _mVec = new double[${classname}._basisLength];
+
+	public static final ${classname} Empty = new ${classname}();
 
 	/// <summary>
 	/// Ctor
@@ -26,10 +28,15 @@ public class ${classname} 	{
 	/// <summary>
 	/// Ctor
 	/// </summary>
-	/// <param name="f"></param>
-	/// <param name="idx"></param>
 	public ${classname}() {
 		Arrays.fill(this._mVec, 0d);
+	}
+
+	/// <summary>
+	/// Ctor
+	/// </summary>
+	public ${classname}(final ${classname} other) {
+		this._mVec = other._mVec;
 	}
 
 	public double get(int idx) {
@@ -74,7 +81,7 @@ body = `
 
 ${code.replace(/^\s*/gm,'		')}
 
-		${classname} ${name_ret}_ret = new ${classname}();
+		${classname} ${name_ret}_ret = new ${classname}(${classname}.Empty);
 		${name_ret}_ret._mVec = ${name_ret};
 		return ${name_ret}_ret;
 	}`
@@ -107,7 +114,7 @@ body=`
 
 ${(symbol?code:code.replace(/a\[/g,"this._mVec[")).replace(/^\s*/gm,'		')}
 
-		${classname} ${name_ret}_ret = new ${classname}();
+		${classname} ${name_ret}_ret = new ${classname}(${classname}.Empty);
 		${name_ret}_ret._mVec = ${name_ret};
 		return ${name_ret}_ret;
 	}`
