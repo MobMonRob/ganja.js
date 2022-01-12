@@ -2,6 +2,8 @@
 // Written by a generator written by enki.
 package de.dhbw.rahmlab.ganjatest.impl;
 
+import java.util.Arrays;
+
 public class C 	{
 	// just for debug and print output, the basis names
 	public static final String[] _basis = new String[] { "1","e1" };
@@ -14,8 +16,9 @@ public class C 	{
 	/// </summary>
 	/// <param name="f"></param>
 	/// <param name="idx"></param>
-	public C(int idx, double f) {
-		_mVec[idx] = f;
+	public C(int idx, double value) {
+		Arrays.fill(this._mVec, 0d);
+		this._mVec[idx] = value;
 	}
 
 	/// <summary>
@@ -24,15 +27,15 @@ public class C 	{
 	/// <param name="f"></param>
 	/// <param name="idx"></param>
 	public C() {
-		_mVec[0] = 0d;
+		Arrays.fill(this._mVec, 0d);
 	}
 
 	public double get(int idx) {
-		return _mVec[idx];
+		return this._mVec[idx];
 	}
 
 	public void set(int idx, double value) {
-		_mVec[idx] = value;
+		this._mVec[idx] = value;
 	}
 
 

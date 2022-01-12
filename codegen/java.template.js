@@ -4,6 +4,8 @@ var preamble = (basis,classname)=>
 // Written by a generator written by enki.
 package de.dhbw.rahmlab.ganjatest.impl;
 
+import java.util.Arrays;
+
 public class ${classname} 	{
 	// just for debug and print output, the basis names
 	public static final String[] _basis = new String[] { ${basis.map(x=>'"'+x+'"').join(',')} };
@@ -16,8 +18,9 @@ public class ${classname} 	{
 	/// </summary>
 	/// <param name="f"></param>
 	/// <param name="idx"></param>
-	public ${classname}(int idx, double f) {
-		_mVec[idx] = f;
+	public ${classname}(int idx, double value) {
+		Arrays.fill(this._mVec, 0d);
+		this._mVec[idx] = value;
 	}
 
 	/// <summary>
@@ -26,15 +29,15 @@ public class ${classname} 	{
 	/// <param name="f"></param>
 	/// <param name="idx"></param>
 	public ${classname}() {
-		_mVec[0] = 0d;
+		Arrays.fill(this._mVec, 0d);
 	}
 
 	public double get(int idx) {
-		return _mVec[idx];
+		return this._mVec[idx];
 	}
 
 	public void set(int idx, double value) {
-		_mVec[idx] = value;
+		this._mVec[idx] = value;
 	}
 `;
 
