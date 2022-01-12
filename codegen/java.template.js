@@ -6,9 +6,10 @@ package de.dhbw.rahmlab.ganjatest.impl;
 
 public class ${classname} 	{
 	// just for debug and print output, the basis names
-	public static String[] _basis = new String[] { ${basis.map(x=>'"'+x+'"').join(',')} };
+	public static final String[] _basis = new String[] { ${basis.map(x=>'"'+x+'"').join(',')} };
+	private static final int _basisLength = ${basis.length};
 
-	private double[] _mVec = new double[${basis.length}];
+	private double[] _mVec = new double[${classname}._basisLength];
 
 	/// <summary>
 	/// Ctor
@@ -39,23 +40,50 @@ public class ${classname} 	{
 
 // cs Template for our binary operators
 
-var binary = (classname, symbol, name, name_a, name_b, name_ret, code, classname_a=classname, classname_b=classname,desc='')=>
-`	/// <summary>
-	// binary operator
+var binary = (classname, symbol, name, name_a, name_b, name_ret, code, classname_a=classname, classname_b=classname,desc='')=> {
+	let body = ``;
+	let aDefiniton = ``;
+	let bDefiniton = ``;
+
+	if (classname == classname_a) {
+		aDefiniton = `double[] ${name_a} = ${name_a+"_param"}._mVec;`;
+	} else {
+		aDefiniton = `${classname_a} ${name_a} = ${name_a+"_param"};`;
+	}
+
+	if (classname == classname_b) {
+		bDefiniton = `double[] ${name_b} = ${name_b+"_param"}._mVec;`;
+	} else {
+		bDefiniton = `${classname_b} ${name_b} = ${name_b+"_param"};`;
+	}
+
+body = `
+	/// <summary>
+	/// binary operator
 	/// ${classname}.${name} : ${name_ret} = ${symbol?name_a+" "+symbol+" "+name_b:name_a+"."+name+"("+name_b+")"}
 	/// ${desc}
 	/// </summary>
-	public static ${classname} ${symbol?"operator "+symbol:name} (${classname_a} ${name_a}, ${classname_b} ${name_b})
+	public static ${classname} ${name?"binop_"+name:name} (${classname_a} ${name_a+"_param"}, ${classname_b} ${name_b+"_param"})
 	{
-		${classname} ${name_ret} = new ${classname}();
-${code.replace(/^\s*/gm,'			')}
-		return ${name_ret};
+		double[] ${name_ret} = new double[${classname}._basisLength];
+		${aDefiniton}
+		${bDefiniton}
+
+${code.replace(/^\s*/gm,'		')}
+
+		${classname} ${name_ret}_ret = new ${classname}();
+		${name_ret}_ret._mVec = ${name_ret};
+		return ${name_ret}_ret;
 	}`
+
+	return body;
+}
 
 // cs Template for our unary operators
 
 var unary = (classname, symbol, name, name_a, name_ret, code, classname_a=classname,desc='')=>
 `	/// <summary>
+	/// unary operator
 	/// ${classname}.${name} : ${name_ret} = ${symbol?symbol+name_a:name_a+"."+name+"()"}
 	/// ${desc}
 	/// </summary>
