@@ -199,7 +199,7 @@ inline R111 operator - (const R111 &a, const R111 &b) {
 // R111.smul : res = a * b 
 // scalar/multivector multiplication
 //***********************
-inline R111 operator * (const float &a, const R111 &b) {
+inline R111 operator * (const double &a, const R111 &b) {
   R111 res;
       res[0] = a*b[0];
     res[1] = a*b[1];
@@ -216,7 +216,7 @@ inline R111 operator * (const float &a, const R111 &b) {
 // R111.muls : res = a * b 
 // multivector/scalar multiplication
 //***********************
-inline R111 operator * (const R111 &a, const float &b) {
+inline R111 operator * (const R111 &a, const double &b) {
   R111 res;
       res[0] = a[0]*b;
     res[1] = a[1]*b;
@@ -233,7 +233,7 @@ inline R111 operator * (const R111 &a, const float &b) {
 // R111.sadd : res = a + b 
 // scalar/multivector addition
 //***********************
-inline R111 operator + (const float &a, const R111 &b) {
+inline R111 operator + (const double &a, const R111 &b) {
   R111 res;
     res[0] = a+b[0];
       res[1] = b[1];
@@ -250,7 +250,7 @@ inline R111 operator + (const float &a, const R111 &b) {
 // R111.adds : res = a + b 
 // multivector/scalar addition
 //***********************
-inline R111 operator + (const R111 &a, const float &b) {
+inline R111 operator + (const R111 &a, const double &b) {
   R111 res;
     res[0] = a[0]+b;
       res[1] = a[1];
@@ -267,7 +267,7 @@ inline R111 operator + (const R111 &a, const float &b) {
 // R111.ssub : res = a - b 
 // scalar/multivector subtraction
 //***********************
-inline R111 operator - (const float &a, const R111 &b) {
+inline R111 operator - (const double &a, const R111 &b) {
   R111 res;
     res[0] = a-b[0];
       res[1] = -b[1];
@@ -284,7 +284,7 @@ inline R111 operator - (const float &a, const R111 &b) {
 // R111.subs : res = a - b 
 // multivector/scalar subtraction
 //***********************
-inline R111 operator - (const R111 &a, const float &b) {
+inline R111 operator - (const R111 &a, const double &b) {
   R111 res;
     res[0] = a[0]-b;
       res[1] = a[1];

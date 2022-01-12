@@ -14,7 +14,7 @@ public class C 	{
 	/// </summary>
 	/// <param name="f"></param>
 	/// <param name="idx"></param>
-	public C(double f, int idx) {
+	public C(int idx, double f) {
 		_mVec[idx] = f;
 	}
 
@@ -36,31 +36,44 @@ public class C 	{
 	}
 
 
+
 	/// <summary>
 	/// unary operator
 	/// C.Reverse : res = ~a
 	/// Reverse the order of the basis blades.
 	/// </summary>
-	public static C operator ~ (C a)
+	public static C unop_Reverse (C a_param)
 	{
-		C res = new C();
-			res[0]=a[0];
-			res[1]=a[1];
-		return res;
+		double[] res = new double[C._basisLength];
+		double[] a = a_param._mVec;
+
+		res[0]=a[0];
+		res[1]=a[1];
+
+		C res_ret = new C();
+		res_ret._mVec = res;
+		return res_ret;
 	}
+
 
 	/// <summary>
 	/// unary operator
 	/// C.Dual : res = !a
 	/// Poincare duality operator.
 	/// </summary>
-	public static C operator ! (C a)
+	public static C unop_Dual (C a_param)
 	{
-		C res = new C();
-			res[0]=-a[1];
-			res[1]=a[0];
-		return res;
+		double[] res = new double[C._basisLength];
+		double[] a = a_param._mVec;
+
+		res[0]=-a[1];
+		res[1]=a[0];
+
+		C res_ret = new C();
+		res_ret._mVec = res;
+		return res_ret;
 	}
+
 
 	/// <summary>
 	/// unary operator
@@ -69,11 +82,17 @@ public class C 	{
 	/// </summary>
 	public  C Conjugate ()
 	{
-		C res = new C();
-			res[0]=this[0];
-			res[1]=-this[1];
-		return res;
+		double[] res = new double[C._basisLength];
+		
+
+		res[0]=res[0];
+		res[1]=-res[1];
+
+		C res_ret = new C();
+		res_ret._mVec = res;
+		return res_ret;
 	}
+
 
 	/// <summary>
 	/// unary operator
@@ -82,10 +101,15 @@ public class C 	{
 	/// </summary>
 	public  C Involute ()
 	{
-		C res = new C();
-			res[0]=this[0];
-			res[1]=-this[1];
-		return res;
+		double[] res = new double[C._basisLength];
+		
+
+		res[0]=res[0];
+		res[1]=-res[1];
+
+		C res_ret = new C();
+		res_ret._mVec = res;
+		return res_ret;
 	}
 
 
@@ -214,10 +238,10 @@ public class C 	{
 	/// C.smul : res = a * b
 	/// scalar/multivector multiplication
 	/// </summary>
-	public static C binop_smul (float a_param, C b_param)
+	public static C binop_smul (double a_param, C b_param)
 	{
 		double[] res = new double[C._basisLength];
-		float a = a_param;
+		double a = a_param;
 		double[] b = b_param._mVec;
 
 		res[0] = a*b[0];
@@ -234,11 +258,11 @@ public class C 	{
 	/// C.muls : res = a * b
 	/// multivector/scalar multiplication
 	/// </summary>
-	public static C binop_muls (C a_param, float b_param)
+	public static C binop_muls (C a_param, double b_param)
 	{
 		double[] res = new double[C._basisLength];
 		double[] a = a_param._mVec;
-		float b = b_param;
+		double b = b_param;
 
 		res[0] = a[0]*b;
 		res[1] = a[1]*b;
@@ -254,10 +278,10 @@ public class C 	{
 	/// C.sadd : res = a + b
 	/// scalar/multivector addition
 	/// </summary>
-	public static C binop_sadd (float a_param, C b_param)
+	public static C binop_sadd (double a_param, C b_param)
 	{
 		double[] res = new double[C._basisLength];
-		float a = a_param;
+		double a = a_param;
 		double[] b = b_param._mVec;
 
 		res[0] = a+b[0];
@@ -274,11 +298,11 @@ public class C 	{
 	/// C.adds : res = a + b
 	/// multivector/scalar addition
 	/// </summary>
-	public static C binop_adds (C a_param, float b_param)
+	public static C binop_adds (C a_param, double b_param)
 	{
 		double[] res = new double[C._basisLength];
 		double[] a = a_param._mVec;
-		float b = b_param;
+		double b = b_param;
 
 		res[0] = a[0]+b;
 		res[1] = a[1];
@@ -294,10 +318,10 @@ public class C 	{
 	/// C.ssub : res = a - b
 	/// scalar/multivector subtraction
 	/// </summary>
-	public static C binop_ssub (float a_param, C b_param)
+	public static C binop_ssub (double a_param, C b_param)
 	{
 		double[] res = new double[C._basisLength];
-		float a = a_param;
+		double a = a_param;
 		double[] b = b_param._mVec;
 
 		res[0] = a-b[0];
@@ -314,11 +338,11 @@ public class C 	{
 	/// C.subs : res = a - b
 	/// multivector/scalar subtraction
 	/// </summary>
-	public static C binop_subs (C a_param, float b_param)
+	public static C binop_subs (C a_param, double b_param)
 	{
 		double[] res = new double[C._basisLength];
 		double[] a = a_param._mVec;
-		float b = b_param;
+		double b = b_param;
 
 		res[0] = a[0]-b;
 		res[1] = a[1];
@@ -328,57 +352,34 @@ public class C 	{
 		return res_ret;
 	}
 
-	#endregion
 
-                /// <summary>
-                /// C.norm()
-                /// Calculate the Euclidean norm. (strict positive).
-                /// </summary>
-	public double norm() { return (double) Math.Sqrt(Math.Abs((this*this.Conjugate())[0]));}
+/// <summary>
+	/// C.norm()
+	/// Calculate the Euclidean norm. (strict positive).
+	/// </summary>
+	public double norm() {
+		return Math.sqrt(Math.abs(binop_Mul(this, this.Conjugate())._mVec[0]));
+	}
 
 	/// <summary>
 	/// C.inorm()
 	/// Calculate the Ideal norm. (signed)
 	/// </summary>
-	public double inorm() { return this[1]!=0.0f?this[1]:this[15]!=0.0f?this[15]:(!this).norm();}
+	public double inorm() {
+		return unop_Dual(this).norm();
+	}
 
 	/// <summary>
 	/// C.normalized()
 	/// Returns a normalized (Euclidean) element.
 	/// </summary>
-	public C normalized() { return this*(1/norm()); }
+	public C normalized() {
+		return binop_muls(this, 1d / norm());
+	}
 
 	
 	// The basis blades
-		public static C e1 = new C(1f, 1);
+	public static final C e1 = new C(1, 1d);
 
-
-	/// string cast
-	public override string ToString()
-	{
-		var sb = new StringBuilder();
-		var n=0;
-		for (int i = 0; i < 2; ++i)
-			if (_mVec[i] != 0.0f) {
-				sb.Append($"{_mVec[i]}{(i == 0 ? string.Empty : _basis[i])} + ");
-				n++;
-		        }
-		if (n==0) sb.Append("0");
-		return sb.ToString().TrimEnd(' ', '+');
-	}
-}
-
-class Program
-{
-
-
-	static void Main(string[] args)
-	{
-	
-		Console.WriteLine("e1*e1         : "+e1*e1);
-		Console.WriteLine("pss           : "+e1);
-		Console.WriteLine("pss*pss       : "+e1*e1);
-
-	}
 }
 

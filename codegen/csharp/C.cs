@@ -157,7 +157,7 @@ namespace C
 		/// C.smul : res = a * b
 		/// scalar/multivector multiplication
 		/// </summary>
-		public static C operator * (float a, C b)
+		public static C operator * (double a, C b)
 		{
 			C res = new C();
 			res[0] = a*b[0];
@@ -169,7 +169,7 @@ namespace C
 		/// C.muls : res = a * b
 		/// multivector/scalar multiplication
 		/// </summary>
-		public static C operator * (C a, float b)
+		public static C operator * (C a, double b)
 		{
 			C res = new C();
 			res[0] = a[0]*b;
@@ -181,7 +181,7 @@ namespace C
 		/// C.sadd : res = a + b
 		/// scalar/multivector addition
 		/// </summary>
-		public static C operator + (float a, C b)
+		public static C operator + (double a, C b)
 		{
 			C res = new C();
 			res[0] = a+b[0];
@@ -193,7 +193,7 @@ namespace C
 		/// C.adds : res = a + b
 		/// multivector/scalar addition
 		/// </summary>
-		public static C operator + (C a, float b)
+		public static C operator + (C a, double b)
 		{
 			C res = new C();
 			res[0] = a[0]+b;
@@ -205,7 +205,7 @@ namespace C
 		/// C.ssub : res = a - b
 		/// scalar/multivector subtraction
 		/// </summary>
-		public static C operator - (float a, C b)
+		public static C operator - (double a, C b)
 		{
 			C res = new C();
 			res[0] = a-b[0];
@@ -217,7 +217,7 @@ namespace C
 		/// C.subs : res = a - b
 		/// multivector/scalar subtraction
 		/// </summary>
-		public static C operator - (C a, float b)
+		public static C operator - (C a, double b)
 		{
 			C res = new C();
 			res[0] = a[0]-b;

@@ -114,12 +114,12 @@ var binops = [
       { name:"Dot",   symbol:"|", desc:"The inner product."},
       { name:"Add",   symbol:"+", desc:"Multivector addition" },
       { name:"Sub",   symbol:"-", desc:"Multivector subtraction" },
-      { name:"smul",  symbol:"*", classname_a:"float", desc:"scalar/multivector multiplication" },
-      { name:"muls",  symbol:"*", classname_b:"float", desc:"multivector/scalar multiplication" },
-      { name:"sadd",  symbol:"+", classname_a:"float", desc:"scalar/multivector addition" },
-      { name:"adds",  symbol:"+", classname_b:"float", desc:"multivector/scalar addition" },
-      { name:"ssub",  symbol:"-", classname_a:"float", desc:"scalar/multivector subtraction" },
-      { name:"subs",  symbol:"-", classname_b:"float", desc:"multivector/scalar subtraction" },
+      { name:"smul",  symbol:"*", classname_a:"double", desc:"scalar/multivector multiplication" },
+      { name:"muls",  symbol:"*", classname_b:"double", desc:"multivector/scalar multiplication" },
+      { name:"sadd",  symbol:"+", classname_a:"double", desc:"scalar/multivector addition" },
+      { name:"adds",  symbol:"+", classname_b:"double", desc:"multivector/scalar addition" },
+      { name:"ssub",  symbol:"-", classname_a:"double", desc:"scalar/multivector subtraction" },
+      { name:"subs",  symbol:"-", classname_b:"double", desc:"multivector/scalar subtraction" },
     ];
 
 // The unary operators we support

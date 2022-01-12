@@ -139,7 +139,7 @@ inline C operator - (const C &a, const C &b) {
 // C.smul : res = a * b 
 // scalar/multivector multiplication
 //***********************
-inline C operator * (const float &a, const C &b) {
+inline C operator * (const double &a, const C &b) {
   C res;
       res[0] = a*b[0];
     res[1] = a*b[1];
@@ -150,7 +150,7 @@ inline C operator * (const float &a, const C &b) {
 // C.muls : res = a * b 
 // multivector/scalar multiplication
 //***********************
-inline C operator * (const C &a, const float &b) {
+inline C operator * (const C &a, const double &b) {
   C res;
       res[0] = a[0]*b;
     res[1] = a[1]*b;
@@ -161,7 +161,7 @@ inline C operator * (const C &a, const float &b) {
 // C.sadd : res = a + b 
 // scalar/multivector addition
 //***********************
-inline C operator + (const float &a, const C &b) {
+inline C operator + (const double &a, const C &b) {
   C res;
     res[0] = a+b[0];
       res[1] = b[1];
@@ -172,7 +172,7 @@ inline C operator + (const float &a, const C &b) {
 // C.adds : res = a + b 
 // multivector/scalar addition
 //***********************
-inline C operator + (const C &a, const float &b) {
+inline C operator + (const C &a, const double &b) {
   C res;
     res[0] = a[0]+b;
       res[1] = a[1];
@@ -183,7 +183,7 @@ inline C operator + (const C &a, const float &b) {
 // C.ssub : res = a - b 
 // scalar/multivector subtraction
 //***********************
-inline C operator - (const float &a, const C &b) {
+inline C operator - (const double &a, const C &b) {
   C res;
     res[0] = a-b[0];
       res[1] = -b[1];
@@ -194,7 +194,7 @@ inline C operator - (const float &a, const C &b) {
 // C.subs : res = a - b 
 // multivector/scalar subtraction
 //***********************
-inline C operator - (const C &a, const float &b) {
+inline C operator - (const C &a, const double &b) {
   C res;
     res[0] = a[0]-b;
       res[1] = a[1];

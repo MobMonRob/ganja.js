@@ -217,7 +217,7 @@ namespace R11
 		/// R111.smul : res = a * b
 		/// scalar/multivector multiplication
 		/// </summary>
-		public static R111 operator * (float a, R111 b)
+		public static R111 operator * (double a, R111 b)
 		{
 			R111 res = new R111();
 			res[0] = a*b[0];
@@ -235,7 +235,7 @@ namespace R11
 		/// R111.muls : res = a * b
 		/// multivector/scalar multiplication
 		/// </summary>
-		public static R111 operator * (R111 a, float b)
+		public static R111 operator * (R111 a, double b)
 		{
 			R111 res = new R111();
 			res[0] = a[0]*b;
@@ -253,7 +253,7 @@ namespace R11
 		/// R111.sadd : res = a + b
 		/// scalar/multivector addition
 		/// </summary>
-		public static R111 operator + (float a, R111 b)
+		public static R111 operator + (double a, R111 b)
 		{
 			R111 res = new R111();
 			res[0] = a+b[0];
@@ -271,7 +271,7 @@ namespace R11
 		/// R111.adds : res = a + b
 		/// multivector/scalar addition
 		/// </summary>
-		public static R111 operator + (R111 a, float b)
+		public static R111 operator + (R111 a, double b)
 		{
 			R111 res = new R111();
 			res[0] = a[0]+b;
@@ -289,7 +289,7 @@ namespace R11
 		/// R111.ssub : res = a - b
 		/// scalar/multivector subtraction
 		/// </summary>
-		public static R111 operator - (float a, R111 b)
+		public static R111 operator - (double a, R111 b)
 		{
 			R111 res = new R111();
 			res[0] = a-b[0];
@@ -307,7 +307,7 @@ namespace R11
 		/// R111.subs : res = a - b
 		/// multivector/scalar subtraction
 		/// </summary>
-		public static R111 operator - (R111 a, float b)
+		public static R111 operator - (R111 a, double b)
 		{
 			R111 res = new R111();
 			res[0] = a[0]-b;
