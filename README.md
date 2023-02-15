@@ -7,6 +7,8 @@
 Ganja.js is a Geometric Algebra code generator for javascript. It generates
 Clifford algebras and sub-algebras of any signature and implements operator 
 overloading and algebraic constants.  
+  
+This fork experimentally adds functionality to generate Java code.
 
 cite as [![DOI](https://zenodo.org/badge/98999731.svg)](https://zenodo.org/badge/latestdoi/98999731)
 
