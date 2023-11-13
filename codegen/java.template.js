@@ -1,6 +1,6 @@
-// cs Template for the preamble
+// java Template for the preamble
 var preamble = (basis,classname)=>
-`// 3D Projective Geometric Algebra
+// 3D Conformal Geometric Algebra
 // Written by a generator written by enki.
 package de.dhbw.rahmlab.ganjatest.impl;
 
@@ -49,7 +49,7 @@ public class ${classname} {
 	}
 `;
 
-// cs Template for our binary operators
+// java Template for our binary operators
 
 var binary = (classname, symbol, name, name_a, name_b, name_ret, code, classname_a=classname, classname_b=classname,desc='')=> {
 	let body = ``;
